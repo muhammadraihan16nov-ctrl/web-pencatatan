@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pencatatan Data Penjualan</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <div class="bg-blob blob1" aria-hidden="true"></div>
+    <div class="bg-blob blob2" aria-hidden="true"></div>
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <header class="topbar">
+        <div class="brand">
+            <div class="logo">⚡</div>
+            <div>
+                <div class="title">Penjualan</div>
+                <div class="subtitle">Pencatatan data yang rapi & cepat</div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button id="btnRefresh" class="btn btn-ghost">Muat Ulang</button>
+            <a class="btn btn-primary" href="#form">Tambah Data</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="card hero" id="form">
+            <h2>Form Input Penjualan</h2>
+            <p class="hint">Isi data, lalu tekan <b>Simpan</b>. Data akan tersimpan di database lokal (SQLite).</p>
+
+            <form id="saleForm" class="form">
+                <div class="row">
+                    <label>
+                        Tanggal
+                        <input name="tgl" type="date" required />
+                    </label>
+
+                    <label>
+                        Pelanggan
+                        <input name="pelanggan" type="text" placeholder="Contoh: Toko Sinar" required />
+                    </label>
+                </div>
+
+                <div class="row">
+                    <label>
+                        Produk
+                        <input name="produk" type="text" placeholder="Contoh: Lampu LED 12W" required />
+                    </label>
+
+                    <label>
+                        Qty
+                        <input name="qty" type="number" min="1" step="1" placeholder="contoh: 3" required />
+                    </label>
+                </div>
+
+                <div class="row">
+                    <label>
+                        Harga Satuan
+                        <input name="harga_satuan" type="number" min="0" step="0.01" placeholder="contoh: 150000"
+                            required />
+                    </label>
+
+                    <div class="calc">
+                        <div class="calc-item">
+                            <div class="k">Subtotal</div>
+                            <div class="v" id="subtotalView">Rp 0</div>
+                        </div>
+                        <div class="calc-item small">
+                            <div class="k">Tips</div>
+                            <div class="v">Subtotal otomatis</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row end">
+                    <div class="status" id="status" role="status" aria-live="polite"></div>
+                    <button class="btn btn-primary" type="submit">
+                        <span class="spin-dot" aria-hidden="true"></span>
+                        Simpan Data
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <section class="card table-card">
+            <div class="table-head">
+                <div>
+                    <h2>Daftar Penjualan</h2>
+                    <div class="muted">Klik <b>Hapus</b> untuk menghapus data.</div>
+                </div>
+                <div class="pill" id="countPill">0 data</div>
+            </div>
+
+            <div class="table-wrap">
+                <table class="table" aria-label="Tabel Penjualan">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tanggal</th>
+                            <th>Pelanggan</th>
+                            <th>Produk</th>
+                            <th class="right">Qty</th>
+                            <th class="right">Harga</th>
+                            <th class="right">Subtotal</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="salesBody">
+                        <!-- rows -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <span>CREATED BY MUHAMMAD RAIHAN</span>
+            <span class="dot-sep">•</span>
+            <span>2026</span>
+        </footer>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
